@@ -7,16 +7,17 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% request.setAttribute("username", request.getParameter("username")); %>
-<% request.setAttribute("password", request.getParameter("password")); %>
-
+<% request.setAttribute("username", request.getParameter("username.value")); %>
+<% request.setAttribute("password", request.getParameter("password.value")); %>
 <html>
 <head>
+
 
     <h1 style="text-align: center">Please log in</h1>
 
     <div class="container" style="text-align: center">
-        <form method="post">
+
+        <form action="login.jsp" method="post">
             <label for="username">UserName:</label><br>
             <input type="text" id="username" name="username" value="" placeholder="username"><br>
             <label for="password">Password:</label><br>
@@ -26,21 +27,16 @@
     </div>
 
 
+
+
     <c:choose>
         <c:when test="${username.equalsIgnoreCase('admin')&& password.equalsIgnoreCase('password')}">
             <p>boolean_expression_1 was true</p>
-<%--            <%if (request.getParameter("username") != null) {--%>
-<%--                if (request.getParameter("username").equals("admin") && request.getParameter("password").equals("password")) {--%>
-<%--                    response.sendRedirect("/profile.jsp");--%>
-<%--                }--%>
-<%--            }%>--%>
-
             <c:redirect url="profile.jsp"/>
-
         </c:when>
-<%--                <c:otherwise>--%>
-<%--                    <c:redirect url="login.jsp"/>--%>
-<%--                </c:otherwise>--%>
+        <c:otherwise>
+            <c:redirect url="login.jsp"/>
+        </c:otherwise>
     </c:choose>
 
 
